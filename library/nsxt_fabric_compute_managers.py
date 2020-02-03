@@ -176,12 +176,12 @@ def wait_till_create(id, module, manager_url, mgr_username, mgr_password, valida
           (rc, resp) = request(manager_url+ '/fabric/compute-managers/%s/status'% id, headers=dict(Accept='application/json'),
                         url_username=mgr_username, url_password=mgr_password, validate_certs=validate_certs, ignore_errors=True)
           if resp['registration_status'] == "REGISTERING":
-              time.sleep(10)
+              time.sleep(20)
           elif resp['registration_status'] == "REGISTERED":
             if resp["connection_status"] == "CONNECTING":
-                time.sleep(10)
+                time.sleep(20)
             elif resp["connection_status"] == "UP":
-              time.sleep(5)
+              time.sleep(10)
               return
             else:
               module.fail_json(msg= 'Error connecting to compute manager. Connection status : %s'%(str(resp["connection_status"])))

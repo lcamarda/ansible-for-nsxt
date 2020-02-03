@@ -63,8 +63,8 @@
 
   "transport_zones_sitea": [
     {
-      "display_name": "OVERLAY-TZ",
-      "description": "NSX Configured Overlay Transpor  spanning site A",
+      "display_name": "OVERLAY-SITEA-TZ",
+      "description": "NSX Configured Overlay Transport zone spanning site A",
       "transport_type": "OVERLAY",
       "host_switch_name": "nvds",
       "uplink_teaming_policy_names": []
@@ -87,6 +87,13 @@
 
   "transport_zones_siteb": [
     {
+      "display_name": "OVERLAY-SITEB-TZ",
+      "description": "NSX Configured Overlay Transport zone spanning site B",
+      "transport_type": "OVERLAY",
+      "host_switch_name": "nvds",
+      "uplink_teaming_policy_names": []
+    },      
+    {
       "display_name": "VLAN-SITEB-TZ",
       "description": "NSX Configured VLAN Transport Zone for Site B",
       "transport_type": "VLAN",
@@ -106,12 +113,12 @@
     { "display_name": "siteb-edge-trunk-uplink1",
       "transport_zone_name": "VLAN-SITEB-TZ",
       "uplink_teaming_policy_name" : "uplink-1-active-uplink-2-standby",
-      "vlan_trunk_spec" : [ { "start" : 231 , "end" : "231"} , { "start" : 300 , "end" : "300"} , { "start" : 400 , "end" : "400"} ]
+      "vlan_trunk_spec" : { "vlan_ranges" : [ { "start" : 231 , "end" : "231"} , { "start" : 300 , "end" : "300"} , { "start" : 400 , "end" : "400"} ] }
     },
     { "display_name": "siteb-edge-trunk-uplink2",
       "transport_zone_name": "VLAN-SITEB-TZ",
       "uplink_teaming_policy_name" : "uplink-2-active-uplink-1-standby",
-      "vlan_trunk_spec" : [ { "start" : 231 , "end" : "231"} , { "start" : 300 , "end" : "300"} , { "start" : 400 , "end" : "400"} ]
+      "vlan_trunk_spec" : { "vlan_ranges" : [ { "start" : 231 , "end" : "231"} , { "start" : 300 , "end" : "300"} , { "start" : 400 , "end" : "400"} ] }
     }
   ],  
 
@@ -280,77 +287,6 @@
       "transport_vlan": 0,
     },
     
-    {
-      "display_name": "esxi-siteb-profile",
-      "teaming": {
-        "active_list": [
-          {
-            "uplink_name": "uplink-1",
-            "uplink_type": "PNIC"
-          },
-          {
-            "uplink_name": "uplink-2",
-            "uplink_type": "PNIC"
-          }
-        ],
-        "policy": "LOADBALANCE_SRCID"
-      },
-      "named_teamings" : [
-        {
-          "name": "uplink-1-only",
-          "active_list": [
-            {
-              "uplink_name": "uplink-1",
-              "uplink_type": "PNIC"
-            }
-          ],
-          "policy": "FAILOVER_ORDER"
-        },
-        {
-          "name": "uplink-2-only",
-          "active_list": [
-            {
-              "uplink_name": "uplink-2",
-              "uplink_type": "PNIC"
-            }
-          ],
-          "policy": "FAILOVER_ORDER"
-        },
-        {
-          "name": "uplink-1-active-uplink-2-standby",
-          "active_list": [
-            {
-              "uplink_name": "uplink-1",
-              "uplink_type": "PNIC"
-            }
-          ],
-          "standby_list": [
-            {
-              "uplink_name": "uplink-2",
-              "uplink_type": "PNIC"
-            }
-          ],
-          "policy": "FAILOVER_ORDER"
-        },    
-        {
-          "name": "uplink-2-active-uplink-1-standby",
-          "active_list": [
-            {
-              "uplink_name": "uplink-2",
-              "uplink_type": "PNIC"
-            }
-          ],
-          "standby_list": [
-            {
-              "uplink_name": "uplink-1",
-              "uplink_type": "PNIC"
-            }
-          ],
-          "policy": "FAILOVER_ORDER"
-        }
-      ],
-      "transport_vlan": 0
-    },
 
     {
       "display_name": "kvm-sitea-profile",
@@ -529,7 +465,7 @@
       ],
       "transport_zone_endpoints": [
         {
-          "transport_zone_name": "OVERLAY-TZ"
+          "transport_zone_name": "OVERLAY-SITEA-TZ"
         },
         {
           "transport_zone_name": "VLAN-SITEA-TZ"
@@ -578,7 +514,7 @@
       ],
       "transport_zone_endpoints": [
         {
-          "transport_zone_name": "OVERLAY-TZ"
+          "transport_zone_name": "OVERLAY-SITEB-TZ"
         },
         {
           "transport_zone_name": "VLAN-SITEB-TZ"
@@ -623,7 +559,7 @@
       ],
       "transport_zone_endpoints": [
         {
-          "transport_zone_name": "OVERLAY-TZ"
+          "transport_zone_name": "OVERLAY-SITEA-TZ"
         },
         {
           "transport_zone_name": "VLAN-EDGE-SITEA-TZ"
@@ -704,7 +640,7 @@
       ],
       "transport_zone_endpoints": [
         {
-          "transport_zone_name": "OVERLAY-TZ"
+          "transport_zone_name": "OVERLAY-SITEA-TZ"
         },
         {
           "transport_zone_name": "VLAN-EDGE-SITEA-TZ"
@@ -764,7 +700,8 @@
           "transport_node_name": "edge-02a"
         }
       ]
-    },
+    }
+  ],
 
   "edge_clusters_siteb": [
     {
