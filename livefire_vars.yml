@@ -687,6 +687,169 @@
     }
   ],
 
+  "edge_transport_nodes_siteb": [
+    {
+      "display_name": "edge-01b",
+      "description": "NSX Edge Node 01b",
+      "host_switches": [
+        {
+          "host_switch_profiles": [
+            {
+              "name": "edge-siteb-profile",
+              "type": "UplinkHostSwitchProfile"
+            },
+            {
+              "name": "LLDP [Send Packet Disabled]",
+              "type": "LldpHostSwitchProfile"
+            }
+          ],
+          "host_switch_name": "nvds",
+          "pnics": [
+            {
+              "device_name": "fp-eth0",
+              "uplink_name": "uplink-1"
+            },
+            {
+              "device_name": "fp-eth1",
+              "uplink_name": "uplink-2"
+            }
+          ],
+          "ip_assignment_spec":
+            {
+              "resource_type": "StaticIpPoolSpec",
+              "ip_pool_name": "TEP-EDGES-SITEB-IP-POOL"
+            }
+        }
+      ],
+      "transport_zone_endpoints": [
+        {
+          "transport_zone_name": "OVERLAY-SITEB-TZ"
+        },
+        {
+          "transport_zone_name": "VLAN-EDGE-SITEB-TZ"
+        }
+      ],
+      "node_deployment_info": {
+        "deployment_type": "VIRTUAL_MACHINE",
+        "deployment_config": {
+          "vm_deployment_config": {
+            "vc_name": "vcsa-01b",
+            "compute_id": "domain-c26",
+            "storage_id": "datastore-45",
+            "host_id": "host-31",
+            "management_network_id": "dvportgroup-42",
+            "hostname": "edgenode-01b.corp.local",
+            "data_network_ids": [
+              "{{logical_switches_info.results[0].id}}",
+              "{{logical_switches_info.results[1].id}}",
+              "dvportgroup-42"
+            ],
+            "management_port_subnets": [
+              {
+                "ip_addresses": [ "192.168.210.19" ],
+                "prefix_length": 24
+              }
+            ],
+            "default_gateway_addresses": [ "192.168.210.1" ],
+            "allow_ssh_root_login": true,
+            "enable_ssh": true,
+            "placement_type": "VsphereDeploymentConfig"
+          },
+          "form_factor": "SMALL",
+          "node_user_settings": {
+            "cli_username": "admin" ,
+            "root_password": "VMware1!VMware1!",
+            "cli_password": "VMware1!VMware1!",
+            "audit_username": "audit",
+            "audit_password": "VMware1!VMware1!"
+          }
+        },
+        "resource_type": "EdgeNode",
+        "display_name": "edge-01b"
+      },
+    },
+    {
+      "display_name": "edge-02b",
+      "description": "NSX Edge Node 02b",
+      "host_switches": [
+        {
+          "host_switch_profiles": [
+            {
+              "name": "edge-siteb-profile",
+              "type": "UplinkHostSwitchProfile"
+            },
+            {
+              "name": "LLDP [Send Packet Disabled]",
+              "type": "LldpHostSwitchProfile"
+            }
+          ],
+          "host_switch_name": "nvds",
+          "pnics": [
+            {
+              "device_name": "fp-eth0",
+              "uplink_name": "uplink-1"
+            },
+            {
+              "device_name": "fp-eth1",
+              "uplink_name": "uplink-2"
+            }
+          ],
+          "ip_assignment_spec":
+            {
+              "resource_type": "StaticIpPoolSpec",
+              "ip_pool_name": "TEP-EDGES-SITEB-IP-POOL"
+            }
+        }
+      ],
+      "transport_zone_endpoints": [
+        {
+          "transport_zone_name": "OVERLAY-SITEB-TZ"
+        },
+        {
+          "transport_zone_name": "VLAN-EDGE-SITEB-TZ"
+        }
+      ],
+      "node_deployment_info": {
+        "deployment_type": "VIRTUAL_MACHINE",
+        "deployment_config": {
+          "vm_deployment_config": {
+            "vc_name": "vcsa-01b",
+            "compute_id": "domain-c26",
+            "storage_id": "datastore-47",
+            "host_id": "host-34",
+            "management_network_id": "dvportgroup-42",
+            "hostname": "edgenode-01b.corp.local",
+            "data_network_ids": [
+              "{{logical_switches_info.results[0].id}}",
+              "{{logical_switches_info.results[1].id}}",
+              "dvportgroup-42"
+            ],
+            "management_port_subnets": [
+              {
+                "ip_addresses": [ "192.168.210.20" ],
+                "prefix_length": 24
+              }
+            ],
+            "default_gateway_addresses": [ "192.168.210.1" ],
+            "allow_ssh_root_login": true,
+            "enable_ssh": true,
+            "placement_type": "VsphereDeploymentConfig"
+          },
+          "form_factor": "SMALL",
+          "node_user_settings": {
+            "cli_username": "admin" ,
+            "root_password": "VMware1!VMware1!",
+            "cli_password": "VMware1!VMware1!",
+            "audit_username": "audit",
+            "audit_password": "VMware1!VMware1!"
+          }
+        },
+        "resource_type": "EdgeNode",
+        "display_name": "edge-02b"
+      },
+    }
+
+  ],
 
   "edge_clusters_sitea": [
     {

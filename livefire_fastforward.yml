@@ -217,6 +217,8 @@
       with_items:
         - "{{ logical_switches_siteb }}"
       register: logical_switches_info
+    
+    - debug: var=logical_switches_info.results[0].id
 
     - name: Create  Edge Transport Nodes at Site A
       nsxt_transport_nodes:
@@ -247,4 +249,34 @@
         state: "{{ state }}"
       with_items:
         - "{{ edge_clusters_sitea }}"
+
+    - name: Create  Edge Transport Nodes at Site B
+      nsxt_transport_nodes:
+        hostname: "{{ nsx_node2.mgmt_ip }}"
+        username: "{{ nsx_username }}"
+        password: "{{ nsx_password }}"
+        validate_certs: "{{ validate_certs }}"
+        display_name: "{{ item.display_name }}"
+        host_switch_spec:
+          resource_type: StandardHostSwitchSpec
+          host_switches: "{{ item.host_switches }}"
+        transport_zone_endpoints: "{{ item.transport_zone_endpoints }}"
+        node_deployment_info: "{{ item.node_deployment_info }}"
+        state: "{{ state }}"
+      with_items:
+        - "{{ edge_transport_nodes_siteb }}"
+
+    - name: Add edge cluster at Site B
+      nsxt_edge_clusters:
+        hostname: "{{ nsx_node2.mgmt_ip }}"
+        username: "{{ nsx_username }}"
+        password: "{{ nsx_password }}"
+        validate_certs: "{{ validate_certs }}"
+        display_name: "{{ item.display_name }}"
+        cluster_profile_bindings:
+        - profile_id: "{{ item.cluster_profile_binding_id }}"
+        members: "{{ item.members }}"
+        state: "{{ state }}"
+      with_items:
+        - "{{ edge_clusters_siteb }}"
 
