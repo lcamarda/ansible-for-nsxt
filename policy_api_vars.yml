@@ -453,9 +453,40 @@
                       "inter_sr_ibgp":false,
                       "resource_type":"BgpRoutingConfig",
                       "id":"bgp",
-                      "display_name":"bgp"
+                      "display_name":"bgp",
+                      "children" : [ {
+                        "BgpNeighborConfig" : {
+                          "neighbor_address" : "192.168.254.9",
+                          "remote_as_num" : "65002",
+                          "keep_alive_time" : 60,
+                          "hold_down_time" : 180,
+                          "allow_as_in" : false,
+                          "maximum_hop_limit" : 1,
+                          "resource_type" : "BgpNeighborConfig",
+                          "id" : "csr-01a",
+                          "display_name" : "csr-01a",
+                          },
+                        "resource_type" : "ChildBgpNeighborConfig",
+                        "marked_for_delete" : false
+                        },
+                        {
+                        "BgpNeighborConfig" : {
+                          "neighbor_address" : "192.168.254.17",
+                          "remote_as_num" : "65002",
+                          "keep_alive_time" : 60,
+                          "hold_down_time" : 180,
+                          "allow_as_in" : false,
+                          "maximum_hop_limit" : 1,
+                          "resource_type" : "BgpNeighborConfig",
+                          "id" : "csr-02a",
+                          "display_name" : "csr-02a",
+                          },
+                        "resource_type" : "ChildBgpNeighborConfig",
+                        "marked_for_delete" : false
+                       }
+                      ]
                     }
-                  },
+                  },  
                   {  
                     "resource_type":"ChildTier0Interface",
                     "Tier0Interface":{  
@@ -530,7 +561,7 @@
         "Segment":{  
           "type":"DISCONNECTED",
           "vlan_ids":[  
-            "0"
+            "300"
           ],
           "transport_zone_path":"/infra/sites/default/enforcement-points/default/transport-zones/{{siteb_tzs.results[2].id}}",
           "resource_type":"Segment",
@@ -544,7 +575,7 @@
         "Segment":{  
           "type":"DISCONNECTED",
           "vlan_ids":[  
-            "0"
+            "400"
           ],
           "transport_zone_path":"/infra/sites/default/enforcement-points/default/transport-zones/{{siteb_tzs.results[2].id}}",
           "resource_type":"Segment",
@@ -601,7 +632,38 @@
                       "inter_sr_ibgp":false,
                       "resource_type":"BgpRoutingConfig",
                       "id":"bgp",
-                      "display_name":"bgp"
+                      "display_name":"bgp",
+                      "children" : [ {
+                        "BgpNeighborConfig" : {
+                          "neighbor_address" : "192.168.254.25",
+                          "remote_as_num" : "65002",
+                          "keep_alive_time" : 60,
+                          "hold_down_time" : 180,
+                          "allow_as_in" : false,
+                          "maximum_hop_limit" : 1,
+                          "resource_type" : "BgpNeighborConfig",
+                          "id" : "csr-01b-1",
+                          "display_name" : "csr-01b-1",
+                          },
+                        "resource_type" : "ChildBgpNeighborConfig",
+                        "marked_for_delete" : false
+                        },
+                        {
+                        "BgpNeighborConfig" : {
+                          "neighbor_address" : "192.168.254.33",
+                          "remote_as_num" : "65002",
+                          "keep_alive_time" : 60,
+                          "hold_down_time" : 180,
+                          "allow_as_in" : false,
+                          "maximum_hop_limit" : 1,
+                          "resource_type" : "BgpNeighborConfig",
+                          "id" : "csr-01b-2",
+                          "display_name" : "csr-01b-2",
+                          },
+                        "resource_type" : "ChildBgpNeighborConfig",
+                        "marked_for_delete" : false
+                       }
+                      ]
                     }
                   },
                   {  
@@ -668,38 +730,6 @@
         }
       }
     ]
-  },
-  "siteabgppeers":[  
-    {  
-      "id":"csr-01a",
-      "body":{  
-        "neighbor_address":"192.168.254.9",
-        "remote_as_num":"65002"
-      }
-    },
-    {  
-      "id":"csr-02a",
-      "body":{  
-        "neighbor_address":"192.168.254.17",
-        "remote_as_num":"65002"
-      }
-    }
-  ],
-  "sitebbgppeers":[  
-    {  
-      "id":"csr-01b-1",
-      "body":{  
-        "neighbor_address":"192.168.254.25",
-        "remote_as_num":"65002"
-      }
-    },
-    {  
-      "id":"csr-01b-2",
-      "body":{  
-        "neighbor_address":"192.168.254.33",
-        "remote_as_num":"65002"
-      }
-    }
-  ]
+  }
 }
 

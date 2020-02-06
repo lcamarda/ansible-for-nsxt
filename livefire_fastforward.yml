@@ -311,34 +311,24 @@
         validate_certs: no
         status_code: 200
 
-    - name: Configure BGP neighbors at Site A
-      uri:
-        method: PATCH
-        url: "https://{{ nsx_node1.mgmt_ip }}/policy/api/v1/infra/tier-0s/t0-sitea/locale-services/default/bgp/neighbors/{{item.id}}"
-        user: "{{ nsx_username }}"
-        password: "{{ nsx_password }}"
-        body: "{{item.body}}"
-        body_format: json
-        force_basic_auth: yes
-        validate_certs: no
-        status_code: 200
-      with_items:
-        - "{{ siteabgppeers }}"
-
-    - name: Configure BGP neighbors at Site B
-      uri:
-        method: PATCH
-        url: "https://{{ nsx_node2.mgmt_ip }}/policy/api/v1/infra/tier-0s/t0-siteb/locale-services/default/bgp/neighbors/{{item.id}}"
-        user: "{{ nsx_username }}"
-        password: "{{ nsx_password }}"
-        body: "{{item.body}}"
-        body_format: json
-        force_basic_auth: yes
-        validate_certs: no
-        status_code: 200
-      with_items:
-        - "{{ sitebbgppeers }}"
-
     - name: Migrate webapp to overlay
       command: pwsh  migrate_webapp_to_overlay.ps1
+
+    - name: Create Security Policy and Groups
+      uri:
+        method: PATCH
+        url: "https://{{ nsx_node1.hostname }}/policy/api/v1/infra/"
+        user: "{{ nsx_username }}"
+        password: "{{ nsx_password }}"
+        body: "{{microsegmentation}}"
+        body_format: json
+        force_basic_auth: yes
+        validate_certs: no
+        status_code: 200
+
+    - name: Tag VMs via terraform
+      terraform:
+        project_path: ./terraform-tags
+        state: present
+        force_init: true
 
