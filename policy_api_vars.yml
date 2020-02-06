@@ -314,7 +314,7 @@
           "vlan_ids":[  
             "100"
           ],
-          "transport_zone_path":"/infra/sites/default/enforcement-points/default/transport-zones/{{VLANEDGESITEATZid.stdout}}",
+          "transport_zone_path":"/infra/sites/default/enforcement-points/default/transport-zones/{{sitea_tzs.results[2].id}}",
           "resource_type":"Segment",
           "id":"edge-site-a-link1",
           "display_name":"edge-site-a-link1"
@@ -328,7 +328,7 @@
           "vlan_ids":[  
             "200"
           ],
-          "transport_zone_path":"/infra/sites/default/enforcement-points/default/transport-zones/{{VLANEDGESITEATZid.stdout}}",
+          "transport_zone_path":"/infra/sites/default/enforcement-points/default/transport-zones/{{sitea_tzs.results[2].id}}",
           "resource_type":"Segment",
           "id":"edge-site-a-link2",
           "display_name":"edge-site-a-link2"
@@ -353,7 +353,7 @@
               "LocaleServices":{  
                 "resource_type":"LocaleServices",
                 "id":"default",
-                "edge_cluster_path":"/infra/sites/default/enforcement-points/default/edge-clusters/{{SITEAEDGECLUSTERid.stdout}}"
+                "edge_cluster_path":"/infra/sites/default/enforcement-points/default/edge-clusters/{{edge_cluster_sitea.results[0].id}}"
               }
             },
             {  
@@ -363,7 +363,7 @@
                 "id":"ov-web",
                 "description":"overlay web logical switch",
                 "display_name":"OV-WEB",
-                "transport_zone_path":"/infra/sites/default/enforcement-points/default/transport-zones/{{OVERLAYTZid.stdout}}",
+                "transport_zone_path":"/infra/sites/default/enforcement-points/default/transport-zones/{{sitea_tzs.results[0].id}}",
                 "subnets":[  
                   {  
                     "gateway_address":"172.16.10.1/24"
@@ -378,7 +378,7 @@
                 "id":"ov-app",
                 "description":"overlay app logical switch",
                 "display_name":"OV-APP",
-                "transport_zone_path":"/infra/sites/default/enforcement-points/default/transport-zones/{{OVERLAYTZid.stdout}}",
+                "transport_zone_path":"/infra/sites/default/enforcement-points/default/transport-zones/{{sitea_tzs.results[0].id}}",
                 "subnets":[  
                   {  
                     "gateway_address":"172.16.20.1/24"
@@ -393,7 +393,7 @@
                 "id":"ov-db",
                 "description":"overlay db logical switch",
                 "display_name":"OV-DB",
-                "transport_zone_path":"/infra/sites/default/enforcement-points/default/transport-zones/{{OVERLAYTZid.stdout}}",
+                "transport_zone_path":"/infra/sites/default/enforcement-points/default/transport-zones/{{sitea_tzs.results[0].id}}",
                 "subnets":[  
                   {  
                     "gateway_address":"172.16.30.1/24"
@@ -418,7 +418,7 @@
               "LocaleServices":{  
                 "resource_type":"LocaleServices",
                 "id":"default",
-                "edge_cluster_path":"/infra/sites/default/enforcement-points/default/edge-clusters/{{SITEAEDGECLUSTERid.stdout}}",
+                "edge_cluster_path":"/infra/sites/default/enforcement-points/default/edge-clusters/{{edge_cluster_sitea.results[0].id}}",
                 "route_redistribution_types":[  
                   "TIER1_CONNECTED"
                 ],
@@ -426,7 +426,7 @@
                   {  
                     "resource_type":"ChildTier0Interface",
                     "Tier0Interface":{  
-                      "edge_path":"/infra/sites/default/enforcement-points/default/edge-clusters/{{SITEAEDGECLUSTERid.stdout}}/edge-nodes/{{EDGE01Aid.stdout}}",
+                      "edge_path":"/infra/sites/default/enforcement-points/default/edge-clusters/{{edge_cluster_sitea.results[0].id}}/edge-nodes/{{edge_sitea.results[0].id}}",
                       "segment_path":"/infra/segments/edge-site-a-link1",
                       "type":"EXTERNAL",
                       "resource_type":"Tier0Interface",
@@ -459,7 +459,7 @@
                   {  
                     "resource_type":"ChildTier0Interface",
                     "Tier0Interface":{  
-                      "edge_path":"/infra/sites/default/enforcement-points/default/edge-clusters/{{SITEAEDGECLUSTERid.stdout}}/edge-nodes/{{EDGE02Aid.stdout}}",
+                      "edge_path":"/infra/sites/default/enforcement-points/default/edge-clusters/{{edge_cluster_sitea.results[0].id}}/edge-nodes/{{edge_sitea.results[1].id}}",
                       "segment_path":"/infra/segments/edge-site-a-link1",
                       "type":"EXTERNAL",
                       "resource_type":"Tier0Interface",
@@ -478,7 +478,7 @@
                   {  
                     "resource_type":"ChildTier0Interface",
                     "Tier0Interface":{  
-                      "edge_path":"/infra/sites/default/enforcement-points/default/edge-clusters/{{SITEAEDGECLUSTERid.stdout}}/edge-nodes/{{EDGE01Aid.stdout}}",
+                      "edge_path":"/infra/sites/default/enforcement-points/default/edge-clusters/{{edge_cluster_sitea.results[0].id}}/edge-nodes/{{edge_sitea.results[0].id}}",
                       "segment_path":"/infra/segments/edge-site-a-link2",
                       "type":"EXTERNAL",
                       "resource_type":"Tier0Interface",
@@ -497,7 +497,7 @@
                   {  
                     "resource_type":"ChildTier0Interface",
                     "Tier0Interface":{  
-                      "edge_path":"/infra/sites/default/enforcement-points/default/edge-clusters/{{SITEAEDGECLUSTERid.stdout}}/edge-nodes/{{EDGE02Aid.stdout}}",
+                      "edge_path":"/infra/sites/default/enforcement-points/default/edge-clusters/{{edge_cluster_sitea.results[0].id}}/edge-nodes/{{edge_sitea.results[1].id}}",
                       "segment_path":"/infra/segments/edge-site-a-link2",
                       "type":"EXTERNAL",
                       "resource_type":"Tier0Interface",
@@ -532,7 +532,7 @@
           "vlan_ids":[  
             "0"
           ],
-          "transport_zone_path":"/infra/sites/default/enforcement-points/default/transport-zones/{{VLANEDGESITEBEXT1TZid.stdout}}",
+          "transport_zone_path":"/infra/sites/default/enforcement-points/default/transport-zones/{{siteb_tzs.results[2].id}}",
           "resource_type":"Segment",
           "id":"edge-site-b-link1",
           "display_name":"edge-site-b-link1"
@@ -546,7 +546,7 @@
           "vlan_ids":[  
             "0"
           ],
-          "transport_zone_path":"/infra/sites/default/enforcement-points/default/transport-zones/{{VLANEDGESITEBEXT2TZid.stdout}}",
+          "transport_zone_path":"/infra/sites/default/enforcement-points/default/transport-zones/{{siteb_tzs.results[2].id}}",
           "resource_type":"Segment",
           "id":"edge-site-b-link2",
           "display_name":"edge-site-b-link2"
@@ -566,7 +566,7 @@
               "LocaleServices":{  
                 "resource_type":"LocaleServices",
                 "id":"default",
-                "edge_cluster_path":"/infra/sites/default/enforcement-points/default/edge-clusters/{{SITEBEDGECLUSTERid.stdout}}",
+                "edge_cluster_path":"/infra/sites/default/enforcement-points/default/edge-clusters/{{edge_cluster_siteb.results[0].id}}",
                 "route_redistribution_types":[  
                   "TIER1_CONNECTED"
                 ],
@@ -574,7 +574,7 @@
                   {  
                     "resource_type":"ChildTier0Interface",
                     "Tier0Interface":{  
-                      "edge_path":"/infra/sites/default/enforcement-points/default/edge-clusters/{{SITEBEDGECLUSTERid.stdout}}/edge-nodes/{{EDGE01Bid.stdout}}",
+                      "edge_path":"/infra/sites/default/enforcement-points/default/edge-clusters/{{edge_cluster_siteb.results[0].id}}/edge-nodes/{{edge_siteb.results[0].id}}",
                       "segment_path":"/infra/segments/edge-site-b-link1",
                       "type":"EXTERNAL",
                       "resource_type":"Tier0Interface",
@@ -607,7 +607,7 @@
                   {  
                     "resource_type":"ChildTier0Interface",
                     "Tier0Interface":{  
-                      "edge_path":"/infra/sites/default/enforcement-points/default/edge-clusters/{{SITEBEDGECLUSTERid.stdout}}/edge-nodes/{{EDGE02Bid.stdout}}",
+                      "edge_path":"/infra/sites/default/enforcement-points/default/edge-clusters/{{edge_cluster_siteb.results[0].id}}/edge-nodes/{{edge_siteb.results[1].id}}",
                       "segment_path":"/infra/segments/edge-site-b-link1",
                       "type":"EXTERNAL",
                       "resource_type":"Tier0Interface",
@@ -626,7 +626,7 @@
                   {  
                     "resource_type":"ChildTier0Interface",
                     "Tier0Interface":{  
-                      "edge_path":"/infra/sites/default/enforcement-points/default/edge-clusters/{{SITEBEDGECLUSTERid.stdout}}/edge-nodes/{{EDGE01Bid.stdout}}",
+                      "edge_path":"/infra/sites/default/enforcement-points/default/edge-clusters/{{edge_cluster_siteb.results[0].id}}/edge-nodes/{{edge_siteb.results[0].id}}",
                       "segment_path":"/infra/segments/edge-site-b-link2",
                       "type":"EXTERNAL",
                       "resource_type":"Tier0Interface",
@@ -645,7 +645,7 @@
                   {  
                     "resource_type":"ChildTier0Interface",
                     "Tier0Interface":{  
-                      "edge_path":"/infra/sites/default/enforcement-points/default/edge-clusters/{{SITEBEDGECLUSTERid.stdout}}/edge-nodes/{{EDGE02Bid.stdout}}",
+                      "edge_path":"/infra/sites/default/enforcement-points/default/edge-clusters/{{edge_cluster_siteb.results[0].id}}/edge-nodes/{{edge_siteb.results[1].id}}",
                       "segment_path":"/infra/segments/edge-site-b-link2",
                       "type":"EXTERNAL",
                       "resource_type":"Tier0Interface",

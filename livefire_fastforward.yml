@@ -4,6 +4,7 @@
   become: yes
   vars_files:
     - livefire_vars.yml
+    - policy_api_vars.yml
   tasks:
     - name: Create edge vDS via PowerCLI
       command: pwsh ./new_vds.ps1
@@ -122,6 +123,7 @@
         state: "{{ state }}"
       with_items:
         - "{{ transport_zones_sitea }}"
+      register: sitea_tzs
 
     - name: Create transport zones at Site B
       nsxt_transport_zones:
@@ -138,6 +140,7 @@
         state: "{{ state }}"
       with_items:
         - "{{ transport_zones_siteb }}"
+      register: siteb_tzs
 
     - name: Create Transport Node Profiles at Site A
       nsxt_transport_node_profiles:
@@ -235,6 +238,7 @@
         state: "{{ state }}"
       with_items:
         - "{{ edge_transport_nodes_sitea }}"
+      register: edge_sitea
 
     - name: Add edge cluster at Site A
       nsxt_edge_clusters:
@@ -249,6 +253,7 @@
         state: "{{ state }}"
       with_items:
         - "{{ edge_clusters_sitea }}"
+      register: edge_cluster_sitea
 
     - name: Create  Edge Transport Nodes at Site B
       nsxt_transport_nodes:
@@ -265,6 +270,7 @@
         state: "{{ state }}"
       with_items:
         - "{{ edge_transport_nodes_siteb }}"
+      register: edge_siteb
 
     - name: Add edge cluster at Site B
       nsxt_edge_clusters:
@@ -279,4 +285,60 @@
         state: "{{ state }}"
       with_items:
         - "{{ edge_clusters_siteb }}"
+      register: edge_cluster_siteb
+
+    - name: Create Gateways (Routers)at Site A
+      uri:
+        method: PATCH
+        url: "https://{{ nsx_node1.mgmt_ip }}/policy/api/v1/infra/"
+        user: "{{ nsx_username }}"
+        password: "{{ nsx_password }}"
+        body: "{{sitea_gateways}}"
+        body_format: json
+        force_basic_auth: yes
+        validate_certs: no
+        status_code: 200
+
+    - name: Create Gateways (Routers)at Site B
+      uri:
+        method: PATCH
+        url: "https://{{ nsx_node2.mgmt_ip }}/policy/api/v1/infra/"
+        user: "{{ nsx_username }}"
+        password: "{{ nsx_password }}"
+        body: "{{siteb_gateways}}"
+        body_format: json
+        force_basic_auth: yes
+        validate_certs: no
+        status_code: 200
+
+    - name: Configure BGP neighbors at Site A
+      uri:
+        method: PATCH
+        url: "https://{{ nsx_node1.mgmt_ip }}/policy/api/v1/infra/tier-0s/t0-sitea/locale-services/default/bgp/neighbors/{{item.id}}"
+        user: "{{ nsx_username }}"
+        password: "{{ nsx_password }}"
+        body: "{{item.body}}"
+        body_format: json
+        force_basic_auth: yes
+        validate_certs: no
+        status_code: 200
+      with_items:
+        - "{{ siteabgppeers }}"
+
+    - name: Configure BGP neighbors at Site B
+      uri:
+        method: PATCH
+        url: "https://{{ nsx_node2.mgmt_ip }}/policy/api/v1/infra/tier-0s/t0-siteb/locale-services/default/bgp/neighbors/{{item.id}}"
+        user: "{{ nsx_username }}"
+        password: "{{ nsx_password }}"
+        body: "{{item.body}}"
+        body_format: json
+        force_basic_auth: yes
+        validate_certs: no
+        status_code: 200
+      with_items:
+        - "{{ sitebbgppeers }}"
+
+    - name: Migrate webapp to overlay
+      command: pwsh  migrate_webapp_to_overlay.ps1
 
