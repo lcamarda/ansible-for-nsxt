@@ -88,8 +88,8 @@ $routedLink2 = New-VDPortGroup -Name trunk2  -VDSwitch $myVDSwitch -VlanTrunkRan
 
 #Set teaming policy for edge vDS
 
-$routedLink1 | Get-VDUplinkTeamingPolicy | Set-VDUplinkTeamingPolicy -ActiveUplinkPort "dvUplink1" -UnusedUplinkPort "dvUplink2"
-$routedLink2 | Get-VDUplinkTeamingPolicy | Set-VDUplinkTeamingPolicy -ActiveUplinkPort "dvUplink2" -UnusedUplinkPort "dvUplink1"
+$routedLink1 | Get-VDUplinkTeamingPolicy | Set-VDUplinkTeamingPolicy -ActiveUplinkPort "dvUplink1" -StandbyUplinkPort "dvUplink2"
+$routedLink2 | Get-VDUplinkTeamingPolicy | Set-VDUplinkTeamingPolicy -ActiveUplinkPort "dvUplink2" -StandbyUplinkPort "dvUplink1"
 
 
 

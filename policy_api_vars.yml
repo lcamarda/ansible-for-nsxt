@@ -317,7 +317,10 @@
           "transport_zone_path":"/infra/sites/default/enforcement-points/default/transport-zones/{{sitea_tzs.results[2].id}}",
           "resource_type":"Segment",
           "id":"edge-site-a-link1",
-          "display_name":"edge-site-a-link1"
+          "display_name":"edge-site-a-link1",
+          "advanced_config": {
+            "uplink_teaming_policy_name": "uplink-1-only"
+          }
         }
       },
       {  
@@ -331,7 +334,10 @@
           "transport_zone_path":"/infra/sites/default/enforcement-points/default/transport-zones/{{sitea_tzs.results[2].id}}",
           "resource_type":"Segment",
           "id":"edge-site-a-link2",
-          "display_name":"edge-site-a-link2"
+          "display_name":"edge-site-a-link2",
+          "advanced_config": {
+            "uplink_teaming_policy_name": "uplink-2-only"
+          }
         }
       },
       {  
@@ -566,7 +572,10 @@
           "transport_zone_path":"/infra/sites/default/enforcement-points/default/transport-zones/{{siteb_tzs.results[2].id}}",
           "resource_type":"Segment",
           "id":"edge-site-b-link1",
-          "display_name":"edge-site-b-link1"
+          "display_name":"edge-site-b-link1",
+          "advanced_config": {
+            "uplink_teaming_policy_name": "uplink-1-only"
+          }
         }
       },
       {  
@@ -580,7 +589,10 @@
           "transport_zone_path":"/infra/sites/default/enforcement-points/default/transport-zones/{{siteb_tzs.results[2].id}}",
           "resource_type":"Segment",
           "id":"edge-site-b-link2",
-          "display_name":"edge-site-b-link2"
+          "display_name":"edge-site-b-link2",
+          "advanced_config": {
+            "uplink_teaming_policy_name": "uplink-2-only"
+          }
         }
       },
       {  

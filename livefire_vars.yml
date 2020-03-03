@@ -328,6 +328,38 @@
       },
       "named_teamings" : [
         {
+          "name": "uplink-1-active-uplink-2-standby",
+          "active_list": [
+            {
+              "uplink_name": "uplink-1",
+              "uplink_type": "PNIC"
+            }
+          ],
+          "standby_list": [
+            {
+              "uplink_name": "uplink-2",
+              "uplink_type": "PNIC"
+            }
+          ],
+          "policy": "FAILOVER_ORDER"
+        },
+        {
+          "name": "uplink-2-active-uplink-1-standby",
+          "active_list": [
+            {
+              "uplink_name": "uplink-2",
+              "uplink_type": "PNIC"
+            }
+          ],
+          "standby_list": [
+            {
+              "uplink_name": "uplink-1",
+              "uplink_type": "PNIC"
+            }
+          ],
+          "policy": "FAILOVER_ORDER"
+        },
+        {
           "name": "uplink-1-only",
           "active_list": [
             {
@@ -591,7 +623,7 @@
             "enable_ssh": true,
             "placement_type": "VsphereDeploymentConfig"
           },
-          "form_factor": "MEDIUM",
+          "form_factor": "SMALL",
           "node_user_settings": {
             "cli_username": "admin" ,
             "root_password": "VMware1!VMware1!",
@@ -672,7 +704,7 @@
             "enable_ssh": true,
             "placement_type": "VsphereDeploymentConfig"
           },
-          "form_factor": "MEDIUM",
+          "form_factor": "SMALL",
           "node_user_settings": {
             "cli_username": "admin" ,
             "root_password": "VMware1!VMware1!",
